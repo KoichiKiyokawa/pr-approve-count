@@ -1,4 +1,7 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "pr-approve-count"
+  },
   "include": ["src/content.ts"]
 }

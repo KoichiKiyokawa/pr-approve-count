@@ -17,6 +17,6 @@ const manifest: chrome.runtime.ManifestV3 = {
 };
 
 fs.writeFileSync(
-  path.resolve(__dirname, "../dist/manifest.json"),
+  path.resolve(__dirname, `../${name}/manifest.json`),
   JSON.stringify(manifest, null, 2)
 );
