@@ -6,7 +6,7 @@
 
       const approveCountString = /(\d+) review approval/.exec(ariaLabel)?.[1];
       row
-        .querySelector(".d-flex")
+        .querySelector(".hide-sm")
         ?.appendChild(createApproveCountBadge(Number(approveCountString || 0)));
     }
   }
@@ -33,8 +33,10 @@ function createApproveCountBadge(approveCount: number) {
   const span = document.createElement("span");
   span.append(`✅ ${approveCount}`);
   span.style.display = "flex";
-  span.style.alignItems = "center";
-  span.style.marginRight = "1rem";
+  span.style.fontSize = "14px";
+  span.style.color = "var(--color-fg-muted)";
+  span.style.marginTop = "3px";
+  span.style.marginLeft = "16px";
 
   return span;
 }
