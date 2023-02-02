@@ -1,21 +1,28 @@
 const APPROVE_COUNT_CLASS = "approve-count";
 
-run();
 setInterval(run, 1000); // for spa navigation
 
+let lock = false;
 async function run() {
+  if (lock) return;
   if (!location.href.endsWith("pulls")) return;
   if (document.getElementsByClassName(APPROVE_COUNT_CLASS).length > 0) return;
 
-  for (const row of document.querySelectorAll(".Box-row")) {
-    const ariaLabel = await findApproveCountAriaLabelByRow(row);
-    if (ariaLabel == null) continue;
+  console.log("write");
 
-    const approveCountString = /(\d+) review approval/.exec(ariaLabel)?.[1];
-    row
-      .querySelector(".hide-sm")
-      ?.appendChild(createApproveCountBadge(Number(approveCountString || 0)));
-  }
+  lock = true;
+  await Promise.all(
+    [...document.querySelectorAll(".Box-row")].map(async (row) => {
+      const ariaLabel = await findApproveCountAriaLabelByRow(row);
+      if (ariaLabel == null) return;
+
+      const approveCountString = /(\d+) review approval/.exec(ariaLabel)?.[1];
+      row
+        .querySelector(".hide-sm")
+        ?.appendChild(createApproveCountBadge(Number(approveCountString || 0)));
+    })
+  );
+  lock = false;
 }
 
 /**
