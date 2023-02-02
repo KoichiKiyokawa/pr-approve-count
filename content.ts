@@ -18,8 +18,8 @@
 async function findApproveCountAriaLabelByRow(row: Element): Promise<string | null> {
   const eachWaitMs = 100;
   let waitedMs = 0;
-  while (waitedMs < 3000) {
-    // maximum wait 3 seconds
+  while (waitedMs < 30000) {
+    // maximum wait 30 seconds
     const ariaLabel = row.querySelector("a.Link--muted.tooltipped")?.getAttribute("aria-label");
     if (ariaLabel != null) return ariaLabel;
 
