@@ -2,15 +2,15 @@
   "name": "pr-approve-count",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/content.js",
   "scripts": {
-    "build": "rm -rf dist && tsc && tsx write-manifest.ts"
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && tsx src/manifest.ts > dist/manifest.json"
   },
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@7.25.1",
   "devDependencies": {
-    "@tsconfig/strictest": "^1.0.2",
+    "@tsconfig/strictest": "1.0.2",
     "@types/chrome": "0.0.209",
     "@types/node": "18.11.18",
     "tsx": "3.12.2",

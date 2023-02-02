@@ -6,6 +6,5 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "lib": ["DOM", "DOM.Iterable"]
-  },
-  "include": ["content.ts"]
+  }
 }
