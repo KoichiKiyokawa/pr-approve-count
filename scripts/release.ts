@@ -1,12 +1,11 @@
-import { execSync } from "child_process";
-import { version } from "../package.json";
 import bumpp from "bumpp";
-
-const outputZipFilename = "./pr-approve-count.zip";
+import { execSync } from "child_process";
+import { name, version } from "../package.json";
 
 (async () => {
-  execSync(`zip -r ${outputZipFilename} dist/`);
   await bumpp();
   execSync("pnpm run build");
-  execSync(`gh release create v${version} ${outputZipFilename}`);
+  // enable to match zip folder name with unzip folder name
+  execSync(`cp -r dist ${name} && zip -r ${name}.zip ${name}/ && rm -rf ${name}`);
+  execSync(`gh release create v${version} ${name}.zip --title '' --notes ''`, { stdio: "inherit" });
 })();
