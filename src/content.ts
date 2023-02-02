@@ -8,8 +8,6 @@ async function run() {
   if (!location.href.endsWith("pulls")) return;
   if (document.getElementsByClassName(APPROVE_COUNT_CLASS).length > 0) return;
 
-  console.log("write");
-
   lock = true;
   await Promise.all(
     [...document.querySelectorAll(".Box-row")].map(async (row) => {
